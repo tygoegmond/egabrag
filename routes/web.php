@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Users\RoleController;
 use App\Http\Controllers\Users\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +30,7 @@ Route::middleware([
 
     // Users
     // Users\UserController
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.user.index');
+    // Users\RoleController
+    Route::get('/users/roles', [RoleController::class, 'index'])->name('users.role.index');
 });

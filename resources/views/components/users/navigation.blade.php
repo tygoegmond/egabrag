@@ -8,8 +8,11 @@
         </select>
     </div>
     <ul class="hidden text-sm font-medium text-center text-gray-500 rounded-lg divide-x divide-gray-200 sm:flex dark:divide-gray-600 dark:text-gray-400" id="fullWidthTab">
-        <x-users.navigation-button href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+        <x-users.navigation-button href="{{ route('users.user.index') }}" :active="request()->routeIs('users.user.index')">
             Users
+        </x-users.navigation-button>
+        <x-users.navigation-button href="{{ route('users.role.index') }}" :active="request()->routeIs('users.role.index')">
+            Roles
         </x-users.navigation-button>
     </ul>
 </div>
