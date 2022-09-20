@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -14,7 +15,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('users.role.index');
+        $this->authorize('viewAny', Role::class);
+
+        $roles = Role::select('name')->orderBy('name')->get();
+
+        return view('users.role.index', ['roles' => $roles]);
     }
 
     /**
