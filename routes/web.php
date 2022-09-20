@@ -33,4 +33,6 @@ Route::middleware([
     Route::get('/users', [UserController::class, 'index'])->name('users.user.index');
     // Users\RoleController
     Route::get('/users/roles', [RoleController::class, 'index'])->name('users.role.index');
+    Route::get('/users/roles/create', [RoleController::class, 'create'])->name('users.role.create');
+    Route::post('/users/roles', [RoleController::class, 'store'])->name('users.role.store');
 });

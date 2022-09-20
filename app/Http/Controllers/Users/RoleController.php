@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use Arr;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -17,7 +19,7 @@ class RoleController extends Controller
     {
         $this->authorize('viewAny', Role::class);
 
-        $roles = Role::select('name')->orderBy('name')->get();
+        $roles = Role::select('name')->withCount('permissions')->orderBy('name')->get();
 
         return view('users.role.index', ['roles' => $roles]);
     }
@@ -29,7 +31,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Role::class);
+
+        $permissions = Permission::select('id', 'name')->orderBy('name')->get();
+
+        return view('users.role.create', ['permissions' => $permissions]);
     }
 
     /**
@@ -40,7 +46,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Role::class);
+
+        // Validate request
+        $request->validate([
+            'name' => 'required|string|max:255|unique:roles,name',
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'nullable|string|exists:permissions,name',
+        ]);
+
+        $role = Role::create(['name' => $request->name, 'guard_name' => 'web']);
+        $role->syncPermissions($request->permissions);
+
+        return redirect()->route('users.role.index')->with('success', 'Role created successfully.');
     }
 
     /**
