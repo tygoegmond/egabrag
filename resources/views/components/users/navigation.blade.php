@@ -8,14 +8,8 @@
         </select>
     </div>
     <ul class="hidden text-sm font-medium text-center text-gray-500 rounded-lg divide-x divide-gray-200 sm:flex dark:divide-gray-600 dark:text-gray-400" id="fullWidthTab">
-        <li class="w-full">
-            <button type="button" class="inline-block p-4 w-full text-blue-600 bg-gray-50 rounded-tl-lg hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Users</button>
-        </li>
-        <li class="w-full">
-            <button type="button" class="inline-block p-4 w-full bg-gray-50 rounded-tl-lg hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Roles</button>
-        </li>
-        <li class="w-full">
-            <button type="button" class="inline-block p-4 w-full bg-gray-50 rounded-tl-lg hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Permissions</button>
-        </li>
+        <x-users.navigation-button href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+            Users
+        </x-users.navigation-button>
     </ul>
 </div>
