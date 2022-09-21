@@ -21,7 +21,7 @@ class RoleController extends Controller
 
         $roles = Role::select('id', 'name')->withCount('permissions')->orderBy('name')->get();
 
-        return view('users.role.index', ['roles' => $roles]);
+        return view('users.role.index', compact('roles'));
     }
 
     /**
@@ -35,7 +35,7 @@ class RoleController extends Controller
 
         $permissions = Permission::select('id', 'name')->orderBy('id')->get();
 
-        return view('users.role.create', ['permissions' => $permissions]);
+        return view('users.role.create', compact('permissions'));
     }
 
     /**
@@ -88,7 +88,7 @@ class RoleController extends Controller
         // Get the role's permissions
         $rolePermissions = $role->permissions->pluck('id')->toArray();
 
-        return view('users.role.edit', ['role' => $role, 'permissions' => $permissions, 'rolePermissions' => $rolePermissions]);
+        return view('users.role.edit', compact('role', 'permissions', 'rolePermissions'));
     }
 
     /**

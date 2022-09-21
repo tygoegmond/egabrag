@@ -9,7 +9,6 @@
 
     <x-users.navigation />
 
-
     <div class="p-4 w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 my-6 mx-auto">
         <x-jet-validation-errors class="mb-4" />
 
