@@ -35,4 +35,6 @@ Route::middleware([
     Route::get('/users/roles', [RoleController::class, 'index'])->name('users.role.index');
     Route::get('/users/roles/create', [RoleController::class, 'create'])->name('users.role.create');
     Route::post('/users/roles', [RoleController::class, 'store'])->name('users.role.store');
+    Route::get('/users/roles/{role}/edit', [RoleController::class, 'edit'])->name('users.role.edit');
+    Route::put('/users/roles/{role}', [RoleController::class, 'update'])->name('users.role.update');
 });

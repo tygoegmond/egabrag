@@ -19,7 +19,7 @@ class RoleController extends Controller
     {
         $this->authorize('viewAny', Role::class);
 
-        $roles = Role::select('name')->withCount('permissions')->orderBy('name')->get();
+        $roles = Role::select('id', 'name')->withCount('permissions')->orderBy('name')->get();
 
         return view('users.role.index', ['roles' => $roles]);
     }
@@ -33,7 +33,7 @@ class RoleController extends Controller
     {
         $this->authorize('create', Role::class);
 
-        $permissions = Permission::select('id', 'name')->orderBy('name')->get();
+        $permissions = Permission::select('id', 'name')->orderBy('id')->get();
 
         return view('users.role.create', ['permissions' => $permissions]);
     }
@@ -58,7 +58,7 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->name, 'guard_name' => 'web']);
         $role->syncPermissions($request->permissions);
 
-        return redirect()->route('users.role.index')->with('success', 'Role created successfully.');
+        return redirect()->route('users.role.index')->banner('Role created successfully.');
     }
 
     /**
@@ -80,7 +80,15 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $this->authorize('update', $role);
+
+        $permissions = Permission::select('id', 'name')->orderBy('id')->get();
+
+        // Get the role's permissions
+        $rolePermissions = $role->permissions->pluck('id')->toArray();
+
+        return view('users.role.edit', ['role' => $role, 'permissions' => $permissions, 'rolePermissions' => $rolePermissions]);
     }
 
     /**
@@ -92,7 +100,20 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $this->authorize('update', $role);
+
+        // Validate request
+        $request->validate([
+            'name' => 'required|string|max:255|unique:roles,name,' . $id,
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'nullable|string|exists:permissions,name',
+        ]);
+
+        $role->update(['name' => $request->name]);
+        $role->syncPermissions($request->permissions);
+
+        return redirect()->route('users.role.index')->banner('Role updated successfully.');
     }
 
     /**

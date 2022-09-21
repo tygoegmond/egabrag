@@ -46,7 +46,7 @@
 
                     <td class="py-4 px-6 text-right">
                         @can('update', $role)
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="{{ route('users.role.edit', $role->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                         @endcan
                     </td>
                 </tr>
