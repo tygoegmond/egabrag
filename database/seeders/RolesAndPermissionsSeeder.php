@@ -25,6 +25,8 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'edit roles']);
         Permission::create(['name' => 'delete roles']);
 
+        Permission::create(['name' => 'view permissions']);
+
         // create roles and assign created permissions
         $role = Role::create(['name' => 'admin']);
         $role->givePermissionTo(Permission::all());

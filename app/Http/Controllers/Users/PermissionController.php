@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -14,7 +15,12 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $this->authorize('viewAny', Permission::class);
+
+        $permissions = Permission::select('id', 'name')->get();
+
+        return view('users.permission.index', compact('permissions'));
+
     }
 
     /**
