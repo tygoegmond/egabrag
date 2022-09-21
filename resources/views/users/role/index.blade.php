@@ -46,13 +46,19 @@
 
                     <td class="py-4 px-6 text-right">
                         @can('update', $role)
-                            <a href="{{ route('users.role.edit', $role->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            <a href="{{ route('users.role.edit', $role->id) }}" class="mx-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        @endcan
+
+                        @can('delete', $role)
+                            <form action="{{ route('users.role.destroy', $role->id) }}" method="POST" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="mx-1 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
+                            </form>
                         @endcan
                     </td>
                 </tr>
                 @endforeach
-
-
             </tbody>
         </table>
     </div>

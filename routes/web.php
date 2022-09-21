@@ -37,4 +37,5 @@ Route::middleware([
     Route::post('/users/roles', [RoleController::class, 'store'])->name('users.role.store');
     Route::get('/users/roles/{role}/edit', [RoleController::class, 'edit'])->name('users.role.edit');
     Route::put('/users/roles/{role}', [RoleController::class, 'update'])->name('users.role.update');
+    Route::delete('/users/roles/{role}', [RoleController::class, 'destroy'])->name('users.role.destroy');
 });

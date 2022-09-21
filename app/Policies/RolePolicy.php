@@ -65,7 +65,7 @@ class RolePolicy
      */
     public function delete(User $user, Role $role)
     {
-        //
+        return $user->hasPermissionTo('delete roles');
     }
 
     /**
