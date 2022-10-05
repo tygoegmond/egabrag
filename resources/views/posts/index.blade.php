@@ -11,8 +11,8 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                 Posts
-                @can('create', Spatie\Permission\Models\Post::class)
-                    <a href="{{ route('users.role.create') }}" class="float-right font-medium text-blue-600 dark:text-blue-500">+</a>
+                @can('create', App\Models\Post::class)
+                    <a href="{{ route('posts.create') }}" class="float-right font-medium text-blue-600 dark:text-blue-500">+</a>
                 @endcan
                 <!-- <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of users.</p> -->
             </caption>
