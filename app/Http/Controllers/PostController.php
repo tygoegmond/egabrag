@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\PostCategory;
 
 class PostController extends Controller
 {
@@ -29,7 +30,12 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Post::class);
 
+        // Get Post Categories
+        $postCategories = PostCategory::all();
+
+        return view('posts.create', compact('postCategories'));
     }
 
     /**
