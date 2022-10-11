@@ -1,3 +1,19 @@
 @tailwind base;
+@layer base {
+    h1 {
+      @apply text-2xl;
+      @apply font-semibold;
+    }
+    h2 {
+      @apply text-xl;
+      @apply font-semibold;
+    }
+    h3 {
+      @apply text-lg;
+      @apply font-semibold;
+    }
+}
 @tailwind components;
 @tailwind utilities;
+
+.ce-block__content, .ce-toolbar__content { max-width:calc(100% - 80px) !important; } .cdx-block { max-width: 100% !important; }
