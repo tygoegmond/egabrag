@@ -74,7 +74,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $this->authorize('view', $post);
+
+        $post->body = base64_encode($post->body);
+
+        return view('posts.show', compact('post'));
     }
 
     /**
