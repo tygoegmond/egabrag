@@ -46,7 +46,24 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $this->authorize('create', Post::class);
+
+        // Decode base64
+        $decodedBody = base64_decode($request->safe()->body, true);
+
+        if ($decodedBody === false) {
+            return redirect()->route('posts.index')->dangerBanner('Post cannot be added. (Internal Error)');
+        }
+
+        // Create Post
+        $post = Post::create([
+            'user_id' => auth()->id(),
+            'title' => $request->safe()->title,
+            'body' => $decodedBody,
+            'post_category_id' => $request->safe()->category,
+        ]);
+
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**

@@ -10,6 +10,10 @@
     <form id="create-post" method="POST" action="{{ route('posts.store') }}">
         @csrf
 
+        <div id="editor-data"></div>
+
+        <x-jet-validation-errors class="mb-4" />
+
         <div class="flex flex-col lg:flex-row container mx-auto space-y-6 lg:space-y-0 lg:space-x-4 my-6">
             <div class="lg:basis-3/4">
                 <div class="flex flex-col space-y-3">
@@ -39,7 +43,7 @@
 
                     <div>
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Category</label>
-                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($postCategories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
@@ -76,10 +80,10 @@
                 // Get the data from the editor
                 editor.save().then((outputData) => {
                     // Add the data to the form
-                    document.getElementById("create-post").innerHTML += '<input type="hidden" name="content" value="' + btoa(JSON.stringify(outputData)) + '">';
+                    document.getElementById("editor-data").innerHTML += '<input type="hidden" name="body" value="' + btoa(JSON.stringify(outputData)) + '">';
 
                     // Submit the form
-                    // document.getElementById("create-post").submit();
+                    document.getElementById("create-post").submit();
                 }).catch((error) => {
                     console.log('Saving failed: ', error)
                 });

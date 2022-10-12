@@ -13,7 +13,8 @@ class StorePostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        // Check if user is authorized to create a post
+        return $this->user()->can('create', Post::class);
     }
 
     /**
@@ -24,7 +25,9 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+            'category' => 'required|exists:post_categories,id'
         ];
     }
 }
