@@ -34,7 +34,9 @@
                 @foreach ($posts as $post)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <a href="{{ route('posts.show', $post->id) }}">
                             {{ $post->title }}
+                            </a>
                         </th>
                         <td class="py-4 px-6">
                             <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-900">
