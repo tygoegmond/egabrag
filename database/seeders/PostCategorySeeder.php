@@ -16,7 +16,11 @@ class PostCategorySeeder extends Seeder
     public function run()
     {
         PostCategory::create([
-            'name' => "Test Category",
+            'name' => "Mindfulness",
+        ]);
+
+        PostCategory::create([
+            'name' => "Financial Literacy",
         ]);
     }
 }
