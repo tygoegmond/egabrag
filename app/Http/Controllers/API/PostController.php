@@ -20,11 +20,10 @@ class PostController extends Controller
 
     public function getPost($id)
     {
-        $this->authorize('view', Post::class);
+        $post = Post::findOrFail($id);
 
-        return new PostResource(
-            Post::where('id', $id)
-            ->firstOrFail()
-        );
+        $this->authorize('view', $post);
+
+        return new PostResource($post);
     }
 }
