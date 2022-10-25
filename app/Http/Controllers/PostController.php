@@ -89,7 +89,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        $post->body = base64_encode($post->body);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -101,7 +105,22 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        // Decode base64
+        $decodedBody = base64_decode($request->safe()->body, true);
+
+        if ($decodedBody === false) {
+            return redirect()->route('posts.index')->dangerBanner('Post cannot be updated. (Internal Error)');
+        }
+
+        // Update Post
+        $post->update([
+            'title' => $request->safe()->title,
+            'body' => $decodedBody,
+        ]);
+
+        return redirect()->route('posts.show', $post->id)->banner('Post updated successfully.');
     }
 
     /**

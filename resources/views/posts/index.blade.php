@@ -46,11 +46,11 @@
 
                         <td class="py-4 px-6 text-right">
                             @can('update', $post)
-                                <a href="{{ route('users.role.edit', $post->id) }}" class="mx-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="{{ route('posts.edit', $post->id) }}" class="mx-1 font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             @endcan
 
                             @can('delete', $post)
-                                <form action="{{ route('users.role.destroy', $post->id) }}" method="POST" class="inline-block">
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="mx-1 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</button>
