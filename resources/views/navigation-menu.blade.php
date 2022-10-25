@@ -16,6 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
 
+                    @can('viewAny', App\Models\Post::class)
+                        <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
+                            {{ __('Posts') }}
+                        </x-jet-nav-link>
+                    @endcan
+
                     <x-jet-nav-link href="{{ route('users.user.index') }}" :active="request()->routeIs('users.*')">
                         {{ __('Users') }}
                     </x-jet-nav-link>

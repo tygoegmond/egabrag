@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\Users\PermissionController;
 use App\Http\Controllers\Users\RoleController;
 use App\Http\Controllers\Users\UserController;
@@ -29,7 +30,14 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    // Users
+    /*
+        Posts
+    */
+    Route::resource('posts', PostController::class);
+
+    /*
+        Users
+    */
     // Users\UserController
     Route::get('/users', [UserController::class, 'index'])->name('users.user.index');
     // Users\RoleController
