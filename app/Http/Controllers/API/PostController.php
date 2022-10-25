@@ -14,7 +14,7 @@ class PostController extends Controller
         $this->authorize('viewAny', Post::class);
 
         return PostResource::collection(
-            Post::select('id', 'title', 'post_category_id', 'user_id', 'created_at', 'updated_at')->paginate(1)
+            Post::select('id', 'title', 'post_category_id', 'user_id', 'created_at', 'updated_at')->paginate(10)
         );
     }
 
