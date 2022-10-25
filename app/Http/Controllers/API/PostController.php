@@ -17,4 +17,14 @@ class PostController extends Controller
             Post::select('id', 'title', 'post_category_id', 'user_id', 'created_at', 'updated_at')->paginate(1)
         );
     }
+
+    public function getPost($id)
+    {
+        $this->authorize('view', Post::class);
+
+        return new PostResource(
+            Post::where('id', $id)
+            ->firstOrFail()
+        );
+    }
 }

@@ -27,5 +27,6 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/posts', [PostController::class, 'getPosts']);
+    Route::get('/posts/{id}', [PostController::class, 'getPost']);
 });
 
