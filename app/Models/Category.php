@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostCategory extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -19,7 +19,7 @@ class PostCategory extends Model
     ];
 
     /**
-     * Get the posts for the post category.
+     * Get the posts for the category.
      */
     public function posts()
     {
