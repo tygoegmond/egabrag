@@ -22,6 +22,12 @@
                         </x-jet-nav-link>
                     @endcan
 
+                    @can('viewAny', App\Models\Coach::class)
+                        <x-jet-nav-link href="{{ route('coaches.index') }}" :active="request()->routeIs('coaches.*')">
+                            {{ __('Coaches') }}
+                        </x-jet-nav-link>
+                    @endcan
+
                     <x-jet-nav-link href="{{ route('users.user.index') }}" :active="request()->routeIs('users.*')">
                         {{ __('Users') }}
                     </x-jet-nav-link>

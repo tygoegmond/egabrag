@@ -12,6 +12,7 @@
         <x-users.navigation-button href="{{ route('users.user.index') }}" :active="request()->routeIs('users.user.*')">
             Users
         </x-users.navigation-button>
+
         @can('viewAny', Spatie\Permission\Models\Role::class)
             <x-users.navigation-button href="{{ route('users.role.index') }}" :active="request()->routeIs('users.role.*')">
                 Roles
