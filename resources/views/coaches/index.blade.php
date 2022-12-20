@@ -11,8 +11,8 @@
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                 Coaches
-                @can('create', Spatie\Permission\Models\Role::class)
-                    <a href="{{ route('users.role.create') }}" class="float-right font-medium text-blue-600 dark:text-blue-500">+</a>
+                @can('create', App\Models\Coach::class)
+                    <a href="{{ route('coaches.create') }}" class="float-right font-medium text-blue-600 dark:text-blue-500">+</a>
                 @endcan
                 <!-- <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of users.</p> -->
             </caption>
@@ -38,7 +38,7 @@
                     </th>
                     <td class="py-4 px-6">
                         <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-900">
-                            {{ $count = $coach->employee->count() }} {{ $count > 1 ? 'Eemployees' : 'Employee' }}
+                            {{ $count = $coach->employee->count() }} {{ $count > 1 || $count == 0 ? 'Employees' : 'Employee' }}
                         </span>
                     </td>
 

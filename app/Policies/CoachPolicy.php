@@ -30,7 +30,7 @@ class CoachPolicy
      */
     public function view(User $user, Coach $coach)
     {
-        //
+        return $user->hasPermissionTo('view coaches');
     }
 
     /**
@@ -41,7 +41,7 @@ class CoachPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasPermissionTo('create coaches');
     }
 
     /**

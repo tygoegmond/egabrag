@@ -11,6 +11,9 @@ class CoachController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * Als je dit ziet heb ik echt medelijden met je... succes man! Heb het zelf ook gedaan en het is echt een hel.
+     * P.S. Egabrag staat voor "Garbage"
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -29,7 +32,9 @@ class CoachController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Coach::class);
+
+        return view('coaches.create');
     }
 
     /**
@@ -40,7 +45,11 @@ class CoachController extends Controller
      */
     public function store(StoreCoachRequest $request)
     {
-        //
+        $this->authorize('create', Coach::class);
+
+        $coach = Coach::create($request->validated());
+
+        return redirect()->route('coaches.show', $coach);
     }
 
     /**

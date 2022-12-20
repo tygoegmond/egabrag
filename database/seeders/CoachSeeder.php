@@ -18,6 +18,7 @@ class CoachSeeder extends Seeder
         // Create Coach Companies
         $coach = Coach::create([
             'name' => "Believe Coaching",
+            'email' => "info@blvcoaching.nl"
         ]);
 
         $coach->employee()->attach(1);
