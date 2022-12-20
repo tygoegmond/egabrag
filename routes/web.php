@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoachController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Users\PermissionController;
 use App\Http\Controllers\Users\RoleController;
@@ -34,6 +35,11 @@ Route::middleware([
         Posts
     */
     Route::resource('posts', PostController::class);
+
+    /*
+        Coaches
+    */
+    Route::resource('coaches', CoachController::class);
 
     /*
         Users

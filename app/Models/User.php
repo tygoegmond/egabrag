@@ -60,4 +60,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Check if user belongs to a coach
+    public function is_a_coach_employee()
+    {
+        return $this->belongsToMany(Coach::class, 'coach_employee', 'user_id', 'coach_id')->exists();
+    }
+
+    public function coach()
+    {
+        return $this->belongsToMany(Coach::class, 'coach_employee', 'user_id', 'coach_id');
+    }
 }

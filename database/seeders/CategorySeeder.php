@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\PostCategory;
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PostCategorySeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,11 @@ class PostCategorySeeder extends Seeder
      */
     public function run()
     {
-        PostCategory::create([
+        Category::create([
             'name' => "Mindfulness",
         ]);
 
-        PostCategory::create([
+        Category::create([
             'name' => "Financial Literacy",
         ]);
     }

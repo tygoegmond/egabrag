@@ -43,6 +43,6 @@ class Post extends Model
      */
     public function postCategory()
     {
-        return $this->belongsTo(PostCategory::class);
+        return $this->belongsTo(Category::class);
     }
 }
