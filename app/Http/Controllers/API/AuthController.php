@@ -28,4 +28,30 @@ class AuthController extends Controller
 
         return $user->createToken($request->device_name)->plainTextToken;
     }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+            'dob' => 'required|string',
+            'nationality' => 'required|string',
+            'school' => 'required|string',
+            'school_grade' => 'required|string',
+            'device_name' => 'required',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => FacadesHash::make($request->password),
+            'dob' => $request->dob,
+            'school' => $request->school,
+            'school_grade' => $request->school_grade,
+            'nationality' => $request->nationality
+        ]);
+
+        return $user->createToken($request->device_name)->plainTextToken;
+    }
 }
