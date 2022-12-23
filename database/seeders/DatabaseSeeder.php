@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         
         // Run the database seeds.
         $this->call([
-            SavingGoalsSeeder::class
+            SavingGoalsSeeder::class,
             RolesAndPermissionsSeeder::class,
             UsersTableSeeder::class,
             PostCategorySeeder::class,
