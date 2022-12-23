@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\API\SavinggoalsController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PostController;
 use Illuminate\Http\Request;
@@ -27,7 +27,12 @@ Route::middleware([
     'auth:sanctum',
     'verified'
 ])->group(function () {
+    
     Route::get('/posts', [PostController::class, 'getPosts']);
     Route::get('/posts/{id}', [PostController::class, 'getPost']);
+    Route::get('/savinggoals',[SavinggoalsController::class,'getGoals']);
+    Route::post('/savinggoals',[SavinggoalsController::class,'createGoals']);
+    Route::delete('/savinggoals',[SavinggoalsController::class,'deleteGoals']);
+    Route::patch('/savinggoals',[SavinggoalsController::class,'updateGoals']);
 });
 

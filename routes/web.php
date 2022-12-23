@@ -5,7 +5,7 @@ use App\Http\Controllers\Users\PermissionController;
 use App\Http\Controllers\Users\RoleController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
-
+use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,3 +50,9 @@ Route::middleware([
     // Users\PermissionController
     Route::get('/users/permissions', [PermissionController::class, 'index'])->name('users.permission.index');
 });
+
+Route::get("/test", function(){
+return [auth()->user()];
+
+});
+WebSocketsRouter::webSocket('/my-websocket', \App\MyCustomWebSocketHandler::class);

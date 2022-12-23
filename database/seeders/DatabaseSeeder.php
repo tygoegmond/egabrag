@@ -14,12 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        
         // Run the database seeds.
         $this->call([
+            SavingGoalsSeeder::class,
             RolesAndPermissionsSeeder::class,
             UsersTableSeeder::class,
             PostCategorySeeder::class,
             PostSeeder::class,
+            MessageSeeder::class,
         ]);
     }
 }
